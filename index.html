@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHANUSH RAJ | Creative Developer Portfolio</title>
+  <meta name="description"
+    content="Dhanush Raj – Front-End Developer based in Chennai. Creative developer portfolio showcasing projects, skills, and contact information.">
+  <script src="https://cdn.tailwindcss.com/?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ffb4a8",
+            "text-primary": "#FFFFFF",
+            "text-muted": "#A0A0A0",
+            "primary-container": "#ff5540",
+            "on-primary-container": "#5c0000",
+            "surface-card": "#1E1E1E",
+            "surface-charcoal": "#121212",
+            "surface-container": "#201f1f",
+            "surface-variant": "#353534",
+            "background": "#131313",
+            "background-pure": "#000000",
+            "brand-red": "#FF0000",
+          },
+          spacing: {
+            "container-max": "1280px",
+            "margin-mobile": "20px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "section-gap": "120px",
+          },
+          fontFamily: {
+            "display-xl": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "label-bold": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+          },
+          fontSize: {
+            "display-xl": ["96px", { lineHeight: "90px", letterSpacing: "-0.04em", fontWeight: "900" }],
+            "display-xl-mobile": ["48px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "900" }],
+            "headline-lg": ["48px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "800" }],
+            "headline-lg-mobile": ["32px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "800" }],
+            "headline-md": ["24px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "700" }],
+            "label-bold": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "700" }],
+            "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    body {
+      background-color: #000;
+      color: #FFF;
+      overflow-x: hidden;
+      -ms-overflow-style: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .grain-overlay {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="300" height="300" filter="url(%23n)" opacity="0.4"/></svg>');
+      filter: contrast(150%) brightness(600%);
+      opacity: 0.05;
+    }
+
+    .glow-sphere {
+      background: radial-gradient(circle, rgba(255, 85, 64, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    }
+
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ff5540;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease-out;
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+      color: transparent;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Nav active state */
+    .nav-link.active {
+      color: #ffb4a8;
+      border-bottom: 2px solid #ffb4a8;
+      padding-bottom: 4px;
+    }
+
+    /* Form focus */
+    .form-input-focus:focus {
+      outline: none;
+      border-color: #ff5540 !important;
+    }
+
+    ::placeholder {
+      color: #555;
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-fade-in-up-delay-1 {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    .animate-fade-in-up-delay-2 {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-marquee {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+
+    /* mobile menu */
+    #mobile-menu {
+      display: none;
+    }
+
+    #mobile-menu.open {
+      display: flex;
+    }
+
+    /* project card hover */
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-white">
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Fixed Background -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] glow-sphere blur-3xl"></div>
+    <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] glow-sphere blur-3xl opacity-50"></div>
+  </div>
+
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10" id="navbar">
+    <nav
+      class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+      <div class="font-display-xl text-headline-md font-black text-primary tracking-tighter">DHANUSH RAJ</div>
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-10">
+        <a class="nav-link font-label-bold text-label-bold uppercase tracking-widest transition-colors duration-300 active"
+          href="#home" data-section="home">Home</a>
+        <a class="nav-link font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary transition-colors duration-300"
+          href="#projects" data-section="projects">Projects</a>
+        <a class="nav-link font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary transition-colors duration-300"
+          href="#about" data-section="about">About</a>
+        <a class="nav-link font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary transition-colors duration-300"
+          href="#contact" data-section="contact">Contact</a>
+      </div>
+      <a href="#contact"
+        class="bg-primary-container text-white px-8 py-3 font-label-bold text-label-bold uppercase tracking-widest hover:bg-on-primary-container transition-all duration-300 rounded-none hidden md:block">Hire
+        Me</a>
+      <!-- Mobile Toggle -->
+      <button id="mobile-toggle" class="md:hidden text-primary">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="flex-col bg-background/95 border-t border-white/10 px-margin-mobile py-6 gap-6">
+      <a class="font-label-bold text-label-bold uppercase tracking-widest text-primary" href="#home">Home</a>
+      <a class="font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary"
+        href="#projects">Projects</a>
+      <a class="font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary"
+        href="#about">About</a>
+      <a class="font-label-bold text-label-bold uppercase tracking-widest text-white hover:text-primary"
+        href="#contact">Contact</a>
+      <a href="#contact"
+        class="bg-primary-container text-white px-6 py-3 font-label-bold text-label-bold uppercase tracking-widest text-center">Hire
+        Me</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- ═══════════════════════════ HOME ═══════════════════════════ -->
+    <section id="home"
+      class="min-h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-24 relative">
+      <div class="grid grid-cols-12 gap-gutter">
+        <div class="col-span-12 md:col-span-10">
+          <span
+            class="inline-block font-label-bold text-label-bold text-primary uppercase tracking-[0.3em] mb-6 opacity-0 translate-y-4 animate-fade-in-up">web
+            Developer based in Chennai.</span>
+          <h1
+            class="font-display-xl text-display-xl-mobile md:text-display-xl leading-none mb-12 opacity-0 translate-y-8 animate-fade-in-up-delay-1">
+            DHANUSH <br><span class="text-primary">RAJ</span></h1>
+          <div class="flex flex-col sm:flex-row gap-6 opacity-0 translate-y-8 animate-fade-in-up-delay-2">
+            <a class="bg-primary-container text-white px-10 py-5 font-label-bold text-label-bold uppercase tracking-widest flex items-center justify-center gap-3 group transition-all duration-300 hover:pr-12"
+              href="#projects">
+              View Projects
+              <span
+                class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+            </a>
+            <a class="border-2 border-white/20 text-white px-10 py-5 font-label-bold text-label-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white hover:text-black transition-all duration-300"
+              href="#about">About Me</a>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-12 left-margin-mobile md:left-margin-desktop flex items-center gap-4 opacity-50">
+        <div class="w-[1px] h-20 bg-gradient-to-b from-white to-transparent"></div>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest"
+          style="writing-mode:vertical-rl;transform:rotate(180deg)">Scroll</span>
+      </div>
+    </section>
+
+    <!-- Bento Portfolio Preview -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">SELECTED WORKS</h2>
+          <p class="text-text-muted font-body-lg max-w-md">Precision engineering meets avant-garde design across mobile
+            and web interfaces.</p>
+        </div>
+        <div class="font-display-xl text-headline-lg text-stroke hidden lg:block">001</div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <!-- Bento Item 1 -->
+        <div
+          class="md:col-span-8 group relative overflow-hidden bg-surface-card rounded-lg border border-white/5 aspect-video md:aspect-auto h-[500px]">
+          <div
+            class="absolute inset-0 opacity-60 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDipSxFB9e7LCvKc1VCfe4oAWPIjQc1rnO4dUgv3TxaJX2fy_uWZ7XqCGDwfQxwTLjLezYuJkWEAHZ6gdYLOm5kN9Wt-I1wb1Ih8_wj6KYKKtFFJICmldxOcBQSfTTxXy7VqBe3JO7cjs4lWyHmU_q8RQMvuZ1-7G_YSqAmdXEHuBqePUSWUcSYSBGdiIHkWHlyDp42D1Bu42kMnici_p9lRt9w6WI3SkRTXEdqeQP45wVc1pPQrZBgmKxMFInzWONX1cYVXMP8bHw')">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 w-full">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="bg-primary-container px-3 py-1 font-label-sm text-[10px] text-white uppercase tracking-tighter">Web3</span>
+              <span
+                class="bg-surface-variant px-3 py-1 font-label-sm text-[10px] text-white uppercase tracking-tighter">React</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md mb-2">NEO-GENESIS INTERFACE</h3>
+            <p class="text-text-muted font-body-md mb-4 max-w-sm">Next-gen asset management with real-time biometric
+              feedback loops.</p>
+            <span
+              class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">north_east</span>
+          </div>
+        </div>
+        <!-- Bento Item 2 -->
+        <div
+          class="md:col-span-4 group relative overflow-hidden bg-surface-card rounded-lg border border-white/5 h-[500px]">
+          <div
+            class="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700 bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9_TgkZsVou1xgf8LNcDYK4WQjFbGLCdciuSYquNj0z5-QH27MuPJDXjyW0ZjjjlEAbHoL3YkMMprF4xIXG2CiFS1of1FeSgg7TKmYWMEcODRFnjXLFwilQzV74TNVv9z_gZvn86J4FbILiSyTW6H4KMzS0JBzzNyXZvcESE0bXxxjPHzkBEGGsXMePpB-DS4OR1hkNVZ-u70KeGbcK-ehO5X2gy9mBksuNdoMh5HscraaaFdBTQlC7P34Oq6qIcIVb4Lyk7QH1aE')">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8">
+            <h3 class="font-headline-md text-headline-md mb-2">BRUTALIST ARCHIVE</h3>
+            <p class="text-text-muted font-body-md">Minimalist CSS playground exploring geometric grid systems.</p>
+          </div>
+        </div>
+        <!-- Bento Item 3 -->
+        <div
+          class="md:col-span-4 group relative overflow-hidden bg-surface-card rounded-lg border border-white/5 h-[400px]">
+          <div
+            class="absolute inset-0 opacity-50 group-hover:scale-110 transition-transform duration-1000 bg-cover bg-center"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBt-lKDi_ATdqBZD43ev3j6NHgvLVakBcGoEhYBzaiDaAoQcAJKro6jMJsTdkAZtyaU5CVpTHgDUFBwfs2yHgw_7yNJPRJOetbQQaTWHzC1d4fMD_fXkmuN9UvcgraUKKYBmgks-XzPRIvCv5AOJJDCbpcg_1YIinRmfmg3ofFkYQNJQH9javvFKnbMXSuveUgFTV1qNlO35ewsjbUlk-lkI7s2F6-5yKNtp9qccSHn1yzpmnadeZ6jcfGGZ_VJeohFDymJxluWj6g')">
+          </div>
+          <div class="absolute bottom-0 left-0 p-8">
+            <h3 class="font-headline-md text-headline-md">VOID ENGINE</h3>
+          </div>
+        </div>
+        <!-- Bento Item 4 -->
+        <div
+          class="md:col-span-8 group relative overflow-hidden bg-surface-card rounded-lg border border-white/5 h-[400px]">
+          <div
+            class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+            <span class="text-[120px] font-black text-white select-none">PERFORMANCE</span>
+          </div>
+          <div class="absolute inset-0 p-12 flex flex-col justify-center">
+            <div class="w-16 h-1 bg-primary mb-8"></div>
+            <h3 class="font-headline-lg text-headline-md md:text-headline-lg mb-4">OPTIMIZED TO THE CORE</h3>
+            <p class="text-text-muted font-body-lg max-w-lg">Every millisecond counts. I build platforms that load
+              faster than the blink of an eye, without sacrificing the visual aggression of the brand.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <section class="py-12 border-y border-white/5 overflow-hidden whitespace-nowrap bg-background-pure">
+      <div class="flex animate-marquee">
+        <span class="text-headline-lg font-black uppercase text-stroke mx-8">Full-stack Engineering</span>
+        <span class="text-headline-lg font-black uppercase text-primary mx-8">UI/UX Design</span>
+        <span class="text-headline-lg font-black uppercase text-stroke mx-8">Three.js Development</span>
+        <span class="text-headline-lg font-black uppercase text-primary mx-8">Creative Direction</span>
+        <span class="text-headline-lg font-black uppercase text-stroke mx-8">WebGL Shaders</span>
+        <span class="text-headline-lg font-black uppercase text-stroke mx-8">Full-stack Engineering</span>
+        <span class="text-headline-lg font-black uppercase text-primary mx-8">UI/UX Design</span>
+        <span class="text-headline-lg font-black uppercase text-stroke mx-8">Three.js Development</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+        <div>
+          <div class="text-display-xl-mobile md:text-headline-lg text-primary font-black mb-2">8.12</div>
+          <div class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Current CGPA</div>
+        </div>
+        <div>
+          <div class="text-display-xl-mobile md:text-headline-lg text-white font-black mb-2">1+</div>
+          <div class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Internship</div>
+        </div>
+        <div>
+          <div class="text-display-xl-mobile md:text-headline-lg text-white font-black mb-2">5+</div>
+          <div class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Core Skills</div>
+        </div>
+        <div>
+          <div class="text-display-xl-mobile md:text-headline-lg text-primary font-black mb-2">100%</div>
+          <div class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Code Coverage</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+    <section id="projects" class="pt-32 pb-section-gap bg-background-pure border-t border-white/5">
+      <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16">
+        <div class="inline-block">
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-4">ACADEMIC &amp;
+            INTERNSHIP PROJECTS</h2>
+          <div class="h-1.5 w-full bg-primary-container"></div>
+        </div>
+        <p class="font-body-lg text-body-lg text-text-muted mt-8 max-w-2xl">A curation of technically complex and
+          aesthetically precise digital experiences. Pushing the boundaries of web interaction.</p>
+      </div>
+      <div
+        class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+        <!-- Card 1 -->
+        <div
+          class="project-card group cursor-pointer relative overflow-hidden rounded-lg bg-surface-card border border-[#333] transition-all duration-500 hover:border-primary-container">
+          <div class="aspect-video overflow-hidden">
+            <img class="project-image w-full h-full object-cover transition-transform duration-700 ease-out"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuATefD_hmbSc5Dvb_ZGZfwn2361II-f2PDr-r8TF_DGYSaUHE_a2L4Dl2q1DJnLaUVbL_x7FjkajMsuFgyPRI1eAMhOapSfr4qlLKLtG6PcQBNvCDqfoDQCFM8iYjXB5WVeSc9JKWvABPxqnCCsGoZknfv_udYOnJltsLYmZCfm8Lg5Hs2-5E6Wma2TrJoxm7mso2l0HvWdsOEn419OF_CuuZF0ST5hCGwsfcAhilxl0guZI7C65GmJ9-uBFHqYIawDtt-ODpjK58E"
+              alt="Magic Bus Internship">
+          </div>
+          <div class="p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">HTML</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">CSS</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">JS</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-primary transition-colors">
+              MAGIC BUS INTERNSHIP</h3>
+            <p class="font-body-md text-body-md text-text-muted">Developed responsive web pages using HTML, CSS, and JS.
+              Focused on form validation and UI components.</p>
+            <div
+              class="mt-6 flex items-center gap-2 text-primary-container font-label-bold text-label-bold uppercase tracking-widest group-hover:gap-4 transition-all">
+              View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="project-card group cursor-pointer relative overflow-hidden rounded-lg bg-surface-card border border-[#333] transition-all duration-500 hover:border-primary-container">
+          <div class="aspect-video overflow-hidden">
+            <img class="project-image w-full h-full object-cover transition-transform duration-700 ease-out"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd0dbLIOcgIrpRc0e8Iulkoc6LG4drjk-YUTUb75tioAbI0e_PhFcaChbpTNGFapAemcpd0pH9ggLvMZfbbGWYEoLLNIhZfbVbau32xupalhPqM3nGIdaQng1O0Re2LktXM4S4qB5dOgnvZCDmBq_Yb8zkdB_ImPm7Mek4RYse5z6CTszRrkJsPFV6xhPQVD4cFVYRQr78mBbCzNT3rWOOlJ38vAhULwlLVQneNjLz_xGHm2rlw1WbOIjJonkcptmlo_0kKoPh5r8"
+              alt="Academic Explorations">
+          </div>
+          <div class="p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">Python</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">PHP</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">SQL</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-primary transition-colors">
+              ACADEMIC EXPLORATIONS</h3>
+            <p class="font-body-md text-body-md text-text-muted">Various projects during B.Sc. Computer Science at
+              Loyola College focusing on Python, PHP, and SQL.</p>
+            <div
+              class="mt-6 flex items-center gap-2 text-primary-container font-label-bold text-label-bold uppercase tracking-widest group-hover:gap-4 transition-all">
+              View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="project-card group cursor-pointer relative overflow-hidden rounded-lg bg-surface-card border border-[#333] transition-all duration-500 hover:border-primary-container">
+          <div class="aspect-video overflow-hidden">
+            <img class="project-image w-full h-full object-cover transition-transform duration-700 ease-out"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2369a_SL8nt6LZT0z4yREpDW_GIuN7QbLP6Izi23HBtpxezldY3ysE0_9HDzjbM2NzF-s0DYpSatX7gC0-XtYzXcp7ncyOaW6yHdh2mi8VqtqsEoRYRfBM2_ElsAHNUi6ToK643BDe0ApM1jn2BhQE84is5HNewsdyC2NRBQLxesjWdEjcs76exRHg9mA2yyRJxsmNd_QLSwQZJ6b64cc1mioFdm68Vc1T9by4BkLQpaXKMKP0M63ZqFtOGcP7PMMXAw36NZuuHw"
+              alt="Core Systems">
+          </div>
+          <div class="p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">OOP</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">MySQL</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-primary transition-colors">
+              CORE SYSTEMS</h3>
+            <p class="font-body-md text-body-md text-text-muted">Basic OOP implementations and database structuring
+              using MySQL.</p>
+            <div
+              class="mt-6 flex items-center gap-2 text-primary-container font-label-bold text-label-bold uppercase tracking-widest group-hover:gap-4 transition-all">
+              View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          class="project-card group cursor-pointer relative overflow-hidden rounded-lg bg-surface-card border border-[#333] transition-all duration-500 hover:border-primary-container">
+          <div class="aspect-video overflow-hidden">
+            <img class="project-image w-full h-full object-cover transition-transform duration-700 ease-out"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-t8F3oqQjk-4BXlVf2i8nXk7uuHHA5Pe95myY1vbqdncqeEp3u-qqr7mmj_K638e8NHZgeTp3jrXKL2HSbjbAkBkEoxuJ0h3ai3lJg1ooG04MCprUO5SzV_RelC3_YPXm70kQRdMVxYACbC9Joh45GirIVfMDcC_bSkd8n3NFiCCmWz0Ko1Ibdwt31kzmWJr4Gpb2Zigg1jzu8NgQDjNq_0WA3iNk2fW0lM8KcW2hbWjPNbaSFo3kr2wh7fqC-BrNbbTZmyG4tu4"
+              alt="Public Speaking & MC">
+          </div>
+          <div class="p-8">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">MC</span>
+              <span
+                class="bg-primary-container/10 text-primary-container px-3 py-1 text-[10px] font-label-bold uppercase tracking-widest border border-primary-container/20 rounded-sm">Loyola
+                College</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-primary transition-colors">
+              PUBLIC SPEAKING &amp; MC</h3>
+            <p class="font-body-md text-body-md text-text-muted">Master of Ceremony for academic and technical events at
+              Loyola College.</p>
+            <div
+              class="mt-6 flex items-center gap-2 text-primary-container font-label-bold text-label-bold uppercase tracking-widest group-hover:gap-4 transition-all">
+              View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+        <div class="py-24 border-y border-white/5">
+          <h2 class="font-display-xl text-display-xl-mobile md:text-display-xl uppercase mb-8">HAVE A VISION?</h2>
+          <a href="#contact"
+            class="inline-block bg-primary-container text-white px-12 py-5 font-label-bold text-headline-md uppercase tracking-tighter rounded-sm hover:bg-on-primary-container transition-colors">LET'S
+            BUILD IT</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+    <section id="about" class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+        <!-- Left: Bio -->
+        <div class="md:col-span-5 space-y-8 reveal">
+          <div class="relative group">
+            <div
+              class="absolute -inset-2 bg-primary/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500">
+            </div>
+            <h2 class="relative font-display-xl text-display-xl-mobile md:text-display-xl uppercase leading-none">ABOUT
+              <br><span class="text-primary">ME</span>
+            </h2>
+          </div>
+          <div class="space-y-6">
+            <p class="font-body-lg text-body-lg text-white leading-relaxed opacity-90">I am a high-performance creative
+              developer specialized in building aggressive digital identities. My work sits at the intersection of
+              technical precision and uncompromising aesthetics.</p>
+            <p class="font-body-md text-body-md text-text-muted leading-relaxed">With an 8.12 CGPA, I've mastered the
+              art of translating complex requirements into fluid, high-contrast user experiences. I don't just write
+              code—I architect digital performances that command attention.</p>
+          </div>
+          <div class="pt-4 flex gap-4">
+            <div class="flex flex-col"><span
+                class="text-primary font-display-xl text-headline-lg leading-none">8.12</span><span
+                class="font-label-sm text-label-sm uppercase tracking-tighter text-text-muted">CGPA</span></div>
+            <div class="w-px h-12 bg-white/10 mx-4"></div>
+            <div class="flex flex-col"><span
+                class="text-primary font-display-xl text-headline-lg leading-none">1+</span><span
+                class="font-label-sm text-label-sm uppercase tracking-tighter text-text-muted">Internship</span></div>
+            <div class="w-px h-12 bg-white/10 mx-4"></div>
+            <div class="flex flex-col"><span
+                class="text-primary font-display-xl text-headline-lg leading-none">5+</span><span
+                class="font-label-sm text-label-sm uppercase tracking-tighter text-text-muted">Core Skills</span></div>
+          </div>
+          <!-- Profile Image -->
+          <div class="relative w-full aspect-square mt-12 bg-surface-card overflow-hidden border border-white/5 group">
+            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              src="/home/user/dhanush_raj/project/front end/portfolia/Untitled.jpeg" alt="Dhanush Raj">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-background-pure via-transparent to-transparent opacity-60">
+            </div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <p class="font-label-bold text-label-bold uppercase text-primary tracking-[0.2em]">Based in Chennai, IN
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Skills -->
+        <div class="md:col-span-7 space-y-12 mt-16 md:mt-0 reveal">
+          <!-- Frontend -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <h3 class="font-headline-lg-mobile md:text-headline-md uppercase tracking-widest">Frontend</h3>
+              <div class="h-px flex-grow bg-white/10"></div>
+              <span class="material-symbols-outlined text-primary">terminal</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div
+                class="p-6 bg-surface-card border border-white/5 hover:border-primary/50 transition-all duration-300 group">
+                <div class="flex justify-between items-start mb-4"><span
+                    class="font-label-bold text-label-bold uppercase tracking-widest group-hover:text-primary transition-colors">React
+                    &amp; Next.js</span><span class="material-symbols-outlined text-primary">rocket_launch</span></div>
+                <div class="w-full bg-white/5 h-1">
+                  <div class="bg-primary h-full w-[95%]"></div>
+                </div>
+              </div>
+              <div
+                class="p-6 bg-surface-card border border-white/5 hover:border-primary/50 transition-all duration-300 group">
+                <div class="flex justify-between items-start mb-4"><span
+                    class="font-label-bold text-label-bold uppercase tracking-widest group-hover:text-primary transition-colors">Tailwind
+                    CSS</span><span class="material-symbols-outlined text-primary">css</span></div>
+                <div class="w-full bg-white/5 h-1">
+                  <div class="bg-primary h-full w-[98%]"></div>
+                </div>
+              </div>
+              <div
+                class="p-6 bg-surface-card border border-white/5 hover:border-primary/50 transition-all duration-300 group">
+                <div class="flex justify-between items-start mb-4"><span
+                    class="font-label-bold text-label-bold uppercase tracking-widest group-hover:text-primary transition-colors">TypeScript</span><span
+                    class="material-symbols-outlined text-primary">code</span></div>
+                <div class="w-full bg-white/5 h-1">
+                  <div class="bg-primary h-full w-[90%]"></div>
+                </div>
+              </div>
+              <div
+                class="p-6 bg-surface-card border border-white/5 hover:border-primary/50 transition-all duration-300 group">
+                <div class="flex justify-between items-start mb-4"><span
+                    class="font-label-bold text-label-bold uppercase tracking-widest group-hover:text-primary transition-colors">Three.js
+                    / WebGL</span><span class="material-symbols-outlined text-primary">deployed_code</span></div>
+                <div class="w-full bg-white/5 h-1">
+                  <div class="bg-primary h-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Design -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <h3 class="font-headline-lg-mobile md:text-headline-md uppercase tracking-widest">Design</h3>
+              <div class="h-px flex-grow bg-white/10"></div>
+              <span class="material-symbols-outlined text-primary">draw</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">UI
+                Architecture</span>
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">Interaction
+                Design</span>
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">Figma</span>
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">Motion
+                Graphics</span>
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">Visual
+                Branding</span>
+              <span
+                class="px-5 py-2 bg-surface-container text-label-sm font-label-sm uppercase tracking-widest border border-white/5 hover:border-primary/30 transition-colors cursor-default">Prototyping</span>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <h3 class="font-headline-lg-mobile md:text-headline-md uppercase tracking-widest">Tools</h3>
+              <div class="h-px flex-grow bg-white/10"></div>
+              <span class="material-symbols-outlined text-primary">construction</span>
+            </div>
+            <ul class="grid grid-cols-2 gap-y-4">
+              <li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary"></span><span class="font-body-md">GIT
+                  / GITHUB</span></li>
+              <li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary"></span><span
+                  class="font-body-md">DOCKER / VERCEL</span></li>
+              <li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary"></span><span
+                  class="font-body-md">POSTGRESQL</span></li>
+              <li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary"></span><span
+                  class="font-body-md">ADOBE SUITE</span></li>
+            </ul>
+          </div>
+          <!-- Quote -->
+          <div class="p-8 bg-primary text-on-primary-container relative overflow-hidden">
+            <div class="relative z-10">
+              <span class="material-symbols-outlined text-4xl mb-4 block opacity-50">format_quote</span>
+              <p class="font-headline-md italic leading-tight mb-4">"The best code is invisible. The best design is
+                inevitable."</p>
+              <p class="font-label-bold uppercase tracking-widest text-sm">— Philosophy</p>
+            </div>
+            <div class="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 opacity-10">
+              <span class="material-symbols-outlined" style="font-size:200px">settings_suggest</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+    <section id="contact" class="pt-32 pb-section-gap bg-background-pure border-t border-white/5 relative">
+      <div
+        class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Left -->
+        <div class="lg:col-span-6 flex flex-col justify-center">
+          <span class="font-label-bold text-label-bold uppercase tracking-[0.2em] text-primary mb-6">Availability: Q4
+            2024</span>
+          <h2 class="font-display-xl text-display-xl-mobile md:text-display-xl uppercase mb-8 leading-none">LET'S WORK
+            <br><span class="text-primary">TOGETHER</span>
+          </h2>
+          <p class="font-body-lg text-body-lg text-text-muted max-w-md mb-12">Looking for a technical partner to bring
+            your complex vision to life? I specialize in building high-performance, aesthetically aggressive digital
+            products.</p>
+          <!-- Info Card -->
+          <div class="hidden lg:block border border-white/5 bg-surface-card p-8 rounded-lg max-w-sm mt-8">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+                <img class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_OxIJVJNT1DI6-Gs1fgAAE9rC_CpLhQ2h_bmEksO0UqJfrWv0fUohsB62UwiPcGeFLU8gQX3C6uj8Kcb5BIE2F5HB7YR2LblZ3XeGEaYXjvJZ-1dPAEaUHFmcxkdxkfF7vGyIcvnEgNwgAct6ckGibMhYQMLz49K8bFm8HVJ9U5bIwH8azyxePHw3rUS5WWxwVWC1AvjzKa_lDsRCAWlPOJGLkunytCKdy_Wr1rsnYbZeuTI20_96fCe31kJLU79auIEYhT4MBSg"
+                  alt="Profile">
+              </div>
+              <div>
+                <p class="font-label-bold text-label-bold text-primary">RESPONSE TIME</p>
+                <p class="font-body-md text-body-md text-white">Under 24 Hours</p>
+              </div>
+            </div>
+            <p class="font-body-md text-body-md text-text-muted italic">"Focusing on quality over quantity. Limited
+              slots available for new partnerships."</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Right: Form -->
+        <div class="lg:col-span-6">
+          <div class="bg-surface-charcoal border border-white/10 p-8 md:p-12 rounded-lg relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[100px]"></div>
+            <form class="space-y-8 relative z-10" id="contact-form">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div class="space-y-2">
+                  <label class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Full
+                    Name</label>
+                  <input id="name" required
+                    class="w-full bg-background-pure border border-white/20 px-4 py-4 font-body-md text-white form-input-focus transition-all duration-200"
+                    placeholder="John Doe" type="text">
+                </div>
+                <div class="space-y-2">
+                  <label class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Email
+                    Address</label>
+                  <input id="email" required
+                    class="w-full bg-background-pure border border-white/20 px-4 py-4 font-body-md text-white form-input-focus transition-all duration-200"
+                    placeholder="john@example.com" type="email">
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Subject</label>
+                <select id="subject"
+                  class="w-full bg-background-pure border border-white/20 px-4 py-4 font-body-md text-white form-input-focus transition-all duration-200 appearance-none">
+                  <option>Project Inquiry</option>
+                  <option>Consultancy</option>
+                  <option>Speaking Engagement</option>
+                  <option>Just Saying Hi</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted">Your
+                  Message</label>
+                <textarea id="message" required
+                  class="w-full bg-background-pure border border-white/20 px-4 py-4 font-body-md text-white form-input-focus transition-all duration-200 resize-none"
+                  placeholder="Tell me about your project, goals, and timeline..." rows="5"></textarea>
+              </div>
+              <button id="send-btn"
+                class="w-full bg-brand-red py-6 font-display-xl text-headline-md uppercase tracking-tight text-white hover:bg-[#CC0000] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-4 group"
+                type="submit">
+                Send Message
+                <span
+                  class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+              </button>
+            </form>
+          </div>
+
+          <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+            import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+            const firebaseConfig = {
+              apiKey: "AIzaSyD14H-h_9sT_iUSx9vV1JKyqem4UU8riUs",
+              authDomain: "database-f8f2d.firebaseapp.com",
+              projectId: "database-f8f2d",
+              storageBucket: "database-f8f2d.firebasestorage.app",
+              messagingSenderId: "181829118604",
+              appId: "1:181829118604:web:e837b9f2529735746d29a9"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const contactForm = document.getElementById('contact-form');
+
+            contactForm.addEventListener('submit', async (e) => {
+              e.preventDefault();
+
+              try {
+                await addDoc(collection(db, "main"), {
+                  name: document.getElementById('name').value,
+                  email: document.getElementById('email').value,
+                  subject: document.getElementById('subject').value,
+                  message: document.getElementById('message').value,
+                  submittedAt: new Date().toISOString()
+                });
+
+                alert("Message sent successfully!");
+                contactForm.reset();
+              } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong!");
+              }
+            });
+          </script>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Social Links -->
+        <div class="mt-12 flex flex-wrap items-center justify-between gap-6 px-4">
+          <div class="flex gap-8">
+            <a class="group flex items-center gap-2" href="#"><span
+                class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">hub</span><span
+                class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted group-hover:text-white transition-colors">Github</span></a>
+            <a class="group flex items-center gap-2" href="#"><span
+                class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">work</span><span
+                class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted group-hover:text-white transition-colors">LinkedIn</span></a>
+            <a class="group flex items-center gap-2" href="#"><span
+                class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">alternate_email</span><span
+                class="font-label-bold text-label-sm uppercase tracking-widest text-text-muted group-hover:text-white transition-colors">Twitter</span></a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer
+    class="w-full py-section-gap border-t border-white/5 bg-background-pure px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+      <div>
+        <div class="font-display-xl text-headline-md text-primary font-black mb-2">DHANUSH RAJ</div>
+        <p class="font-label-sm text-label-sm text-text-muted uppercase tracking-widest">©2024 DHANUSH RAJ. ALL RIGHTS
+          RESERVED.</p>
+      </div>
+      <div class="flex gap-8">
+        <a class="font-label-sm text-label-sm uppercase text-text-muted hover:text-primary transition-colors opacity-80 hover:opacity-100"
+          href="#">Github</a>
+        <a class="font-label-sm text-label-sm uppercase text-text-muted hover:text-primary transition-colors opacity-80 hover:opacity-100"
+          href="#">LinkedIn</a>
+        <a class="font-label-sm text-label-sm uppercase text-text-muted hover:text-primary transition-colors opacity-80 hover:opacity-100"
+          href="#">Twitter</a>
+        <a class="font-label-sm text-label-sm uppercase text-text-muted hover:text-primary transition-colors opacity-80 hover:opacity-100"
+          href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Custom Cursor ──
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform += ' scale(2.5)';
+        cursor.style.backgroundColor = 'rgba(255,85,64,0.2)';
+        cursor.style.borderColor = 'transparent';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', '');
+        cursor.style.backgroundColor = 'transparent';
+        cursor.style.borderColor = '#ff5540';
+      });
+    });
+
+    // ── Mobile Menu ──
+    const toggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // ── Active Nav on Scroll ──
+    const sections = ['home', 'projects', 'about', 'contact'];
+    const navLinks = document.querySelectorAll('.nav-link');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => {
+            l.classList.remove('active');
+            l.style.color = '';
+          });
+          const active = document.querySelector(`.nav-link[data-section="${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      revealObserver.observe(el);
+    });
+
+    // ── Project Card Scroll Reveal ──
+    const cardObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = `opacity 0.7s ease ${i * 0.1}s, transform 0.7s ease ${i * 0.1}s`;
+      cardObserver.observe(card);
+    });
+
+    // ── Contact Form ──
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = document.getElementById('send-btn');
+      const orig = btn.innerHTML;
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Message Sent!';
+        btn.style.backgroundColor = '#22c55e';
+        btn.style.opacity = '1';
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.backgroundColor = '';
+          btn.disabled = false;
+          e.target.reset();
+        }, 3000);
+      }, 1500);
+    });
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+</body>
+
+</html>
